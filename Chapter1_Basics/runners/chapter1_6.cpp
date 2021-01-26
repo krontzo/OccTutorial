@@ -50,22 +50,22 @@ int main(int argc, char *argv[])
 	gp_Pnt evalPoint;
 
 	//Let's evaluate the first point on the curve
-	BSplCLib::D0(0.0,0,2,Standard_False,controlPoints,weights,knots,multiplicites,evalPoint);
+	BSplCLib::D0(0.0,0,2,Standard_False,controlPoints,&weights,knots,&multiplicites,evalPoint);
 	std::cout << evalPoint.X() << " " << evalPoint.Y() << " " << evalPoint.Z() << std::endl;
 
-	BSplCLib::D0(0.5,0,2,Standard_False,controlPoints,weights,knots,multiplicites,evalPoint);
+	BSplCLib::D0(0.5,0,2,Standard_False,controlPoints,&weights,knots,&multiplicites,evalPoint);
 	std::cout << evalPoint.X() << " " << evalPoint.Y() << " " << evalPoint.Z() << std::endl;
 
-	BSplCLib::D0(1.0,0,2,Standard_False,controlPoints,weights,knots,multiplicites,evalPoint);
+	BSplCLib::D0(1.0,0,2,Standard_False,controlPoints,&weights,knots,&multiplicites,evalPoint);
 	std::cout << evalPoint.X() << " " << evalPoint.Y() << " " << evalPoint.Z() << std::endl;
 
  	//To evaluate the tangent, we can call the D1 function (first derivative)
 	//The derivative should be (0,2,0) at parameter u=0, and (-2,0,0) at u=1
 	gp_Vec tangentVector;
-	BSplCLib::D1(0.0,0,2,Standard_False,controlPoints,weights,knots,multiplicites,evalPoint,tangentVector);
+	BSplCLib::D1(0.0,0,2,Standard_False,controlPoints,&weights,knots,&multiplicites,evalPoint,tangentVector);
 	std::cout << "Tangent at u=0 " <<  tangentVector.X() << " " << tangentVector.Y() << " " << tangentVector.Z() << std::endl;
 
-	BSplCLib::D1(1.0,0,2,Standard_False,controlPoints,weights,knots,multiplicites,evalPoint,tangentVector);
+	BSplCLib::D1(1.0,0,2,Standard_False,controlPoints,&weights,knots,&multiplicites,evalPoint,tangentVector);
 	std::cout << "Tangent at u=1 " <<  tangentVector.X() << " " << tangentVector.Y() << " " << tangentVector.Z() << std::endl;
 
 	//Let's evaluate 10 points on the curve with their tangents, and save them into a file
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 	file.open("bSpline.txt");
 	double deltaU = 1.0 / 10.0;
 	for (int i = 0; i <= 10; ++i) {
-		BSplCLib::D1(i*deltaU,0,2,Standard_False,controlPoints,weights,knots,multiplicites,evalPoint,tangentVector);
+		BSplCLib::D1(i*deltaU,0,2,Standard_False,controlPoints,&weights,knots,&multiplicites,evalPoint,tangentVector);
 		file << evalPoint.X() << " " <<evalPoint.Y() << " " <<evalPoint.Z() << " " << tangentVector.X() << " " << tangentVector.Y() << " " 
 			<< tangentVector.Z() <<  std::endl;
 	}

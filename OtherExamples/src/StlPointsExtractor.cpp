@@ -26,12 +26,12 @@ StlPointsExtractor::~StlPointsExtractor()
 {
 
 }
-Handle_TColgp_HArray1OfPnt StlPointsExtractor::extractVerticesFromTopoDSShape(const TopoDS_Shape& shape)
+Handle(TColgp_HArray1OfPnt) StlPointsExtractor::extractVerticesFromTopoDSShape(const TopoDS_Shape& shape)
 {
 	TopTools_IndexedMapOfShape vertices;
 	TopExp::MapShapes(shape,TopAbs_VERTEX,vertices);
 
-	Handle_TColgp_HArray1OfPnt result = new TColgp_HArray1OfPnt(1,vertices.Extent());
+	Handle(TColgp_HArray1OfPnt) result = new TColgp_HArray1OfPnt(1,vertices.Extent());
 
 	for(Standard_Integer i = 1;i<=vertices.Extent();i++)
 	{
