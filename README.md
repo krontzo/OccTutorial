@@ -1,4 +1,13 @@
 # OccTutorial
+
+***WIP: this fork is to migrate to OpenCASCADE 7.5.0 and to use it under Windows 10 (20H2) and macOS***
+
+## TODO List
+
+- [x] Migrate to OpenCASCADE 7.5.0
+- [ ] Test under Ubuntu most recent LTS
+- [ ] Add more content to the tutorials
+
 [![Build Status](https://travis-ci.org/lvk88/OccTutorial.svg?branch=master)](https://travis-ci.org/lvk88/OccTutorial)
 
 This repository contains a set of tutorials for OpenCASCADE, the open source geometry kernel.
