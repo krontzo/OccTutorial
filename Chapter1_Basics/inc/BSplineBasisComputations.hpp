@@ -6,7 +6,7 @@
 #include "math_Matrix.hxx"
 #include "Standard_Real.hxx"
 #include "Standard_Integer.hxx"
-#include "Handle_TColStd_HArray1OfReal.hxx"
+#include "TColStd_HArray1OfReal.hxx"
 
 
 
@@ -16,8 +16,8 @@ public:
 	BSplineBasisComputations ();
 	virtual ~BSplineBasisComputations ();
 
-	static void calculateBasisFunctions(Handle_TColStd_HArray1OfReal knots, Standard_Integer degree, Standard_Real parameter, math_Matrix& basisFunctions);
-	static double evaluateBasisFunction(Handle_TColStd_HArray1OfReal knots, Standard_Integer degree, Standard_Real parameter, Standard_Integer basisFunctionIndex);
+	static void calculateBasisFunctions(Handle(TColStd_HArray1OfReal) knots, Standard_Integer degree, Standard_Real parameter, math_Matrix& basisFunctions);
+	static double evaluateBasisFunction(Handle(TColStd_HArray1OfReal) knots, Standard_Integer degree, Standard_Real parameter, Standard_Integer basisFunctionIndex);
 
 private:
 	

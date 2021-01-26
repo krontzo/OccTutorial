@@ -4,7 +4,7 @@
 //2015 November
 //Chapter 1.3 Least squares fitting
 
-class Handle_TColgp_HArray1OfPnt;
+class TColgp_HArray1OfPnt;
 
 #include "gp_Circ.hxx"
 
@@ -14,7 +14,7 @@ public:
 	LeastSquaresFitting ();
 	virtual ~LeastSquaresFitting ();
 
-	static gp_Circ fitLeastSquaresCircleToPoints(const Handle_TColgp_HArray1OfPnt& points);
+	static gp_Circ fitLeastSquaresCircleToPoints(const Handle(TColgp_HArray1OfPnt)& points);
 
 private:
 	struct InitialGuessForLeastSquaresFitting
@@ -28,7 +28,7 @@ private:
 		double myRadius;
 	};
 
-	static InitialGuessForLeastSquaresFitting findInitialGuess(const Handle_TColgp_HArray1OfPnt& points);	
+	static InitialGuessForLeastSquaresFitting findInitialGuess(const Handle(TColgp_HArray1OfPnt)& points);	
 
 };
 

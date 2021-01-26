@@ -14,7 +14,7 @@
 class CircleFitCostFunction : public math_MultipleVarFunctionWithGradient
 {
 public:
-	CircleFitCostFunction(Handle_TColgp_HArray1OfPnt pointsToFitOnto);
+	CircleFitCostFunction(Handle(TColgp_HArray1OfPnt) pointsToFitOnto);
 	virtual ~CircleFitCostFunction();
 
 	Standard_Integer NbVariables() const;
@@ -25,11 +25,11 @@ public:
 
 
 private:
-	Handle_TColgp_HArray1OfPnt myPointsToFitOnto;
+	Handle(TColgp_HArray1OfPnt) myPointsToFitOnto;
 	
 };
 
-CircleFitCostFunction::CircleFitCostFunction(Handle_TColgp_HArray1OfPnt pointsToFitOnto) : myPointsToFitOnto(pointsToFitOnto)
+CircleFitCostFunction::CircleFitCostFunction(Handle(TColgp_HArray1OfPnt) pointsToFitOnto) : myPointsToFitOnto(pointsToFitOnto)
 {
 }
 
@@ -92,7 +92,7 @@ LeastSquaresFitting::~LeastSquaresFitting ()
 {
 }
 
-gp_Circ LeastSquaresFitting::fitLeastSquaresCircleToPoints(const Handle_TColgp_HArray1OfPnt& points)
+gp_Circ LeastSquaresFitting::fitLeastSquaresCircleToPoints(const Handle(TColgp_HArray1OfPnt)& points)
 {
 	//Get initial guess for least squares fit
 	InitialGuessForLeastSquaresFitting initialGuess = findInitialGuess(points);
@@ -104,7 +104,8 @@ gp_Circ LeastSquaresFitting::fitLeastSquaresCircleToPoints(const Handle_TColgp_H
 
 	CircleFitCostFunction costFunction(points);
 
-	math_BFGS minimizer(costFunction,startingPointForBFGS);
+	math_BFGS minimizer(3);
+    minimizer.Perform(costFunction,startingPointForBFGS);
 
 	math_Vector minimum(1,3);
 
@@ -127,7 +128,7 @@ gp_Circ LeastSquaresFitting::fitLeastSquaresCircleToPoints(const Handle_TColgp_H
 
 }
 
-LeastSquaresFitting::InitialGuessForLeastSquaresFitting LeastSquaresFitting::findInitialGuess(const Handle_TColgp_HArray1OfPnt& points)
+LeastSquaresFitting::InitialGuessForLeastSquaresFitting LeastSquaresFitting::findInitialGuess(const Handle(TColgp_HArray1OfPnt)& points)
 {
 	//Compute center of gravity for point set
 	double cx=0.0;

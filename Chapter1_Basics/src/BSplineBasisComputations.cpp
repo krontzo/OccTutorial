@@ -15,7 +15,7 @@ BSplineBasisComputations::~BSplineBasisComputations()
 
 }
 
-void BSplineBasisComputations::calculateBasisFunctions(Handle_TColStd_HArray1OfReal knots, Standard_Integer degree, 
+void BSplineBasisComputations::calculateBasisFunctions(Handle(TColStd_HArray1OfReal) knots, Standard_Integer degree, 
 				Standard_Real parameter, math_Matrix& basisFunctions)
 {
 	Standard_Integer numberOfNonVanishingFunctions = degree + 1;
@@ -23,7 +23,7 @@ void BSplineBasisComputations::calculateBasisFunctions(Handle_TColStd_HArray1OfR
 	
 	math_Matrix condensedBasisFunctions(1,1,1,numberOfNonVanishingFunctions);
 	
-	BSplCLib::EvalBsplineBasis(1,0,degree+1,knots->Array1(),parameter,firstNonZeroBSplineIndex,condensedBasisFunctions);
+	BSplCLib::EvalBsplineBasis(0,degree+1,knots->Array1(),parameter,firstNonZeroBSplineIndex,condensedBasisFunctions);
 
 	for(Standard_Integer i = 0;i<numberOfNonVanishingFunctions;i++)
 	{
