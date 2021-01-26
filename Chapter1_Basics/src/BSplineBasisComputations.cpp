@@ -32,7 +32,7 @@ void BSplineBasisComputations::calculateBasisFunctions(Handle(TColStd_HArray1OfR
 
 	return;
 }
-double BSplineBasisComputations::evaluateBasisFunction(Handle_TColStd_HArray1OfReal knots, Standard_Integer degree,
+double BSplineBasisComputations::evaluateBasisFunction(Handle(TColStd_HArray1OfReal) knots, Standard_Integer degree,
 	       			Standard_Real parameter, Standard_Integer basisFunctionIndex)
 {
 	Standard_Integer totalNumberOfBasisFunctions = knots->Length() - 1 - degree;

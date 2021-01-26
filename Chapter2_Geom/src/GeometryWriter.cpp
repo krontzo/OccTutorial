@@ -18,7 +18,7 @@ GeometryWriter::~GeometryWriter()
 
 }
 
-void GeometryWriter::writeGeomEntityToStepFile(Handle_Geom_Curve curve, std::string fileName)
+void GeometryWriter::writeGeomEntityToStepFile(Handle(Geom_Curve) curve, std::string fileName)
 {
 	BRepBuilderAPI_MakeEdge edgeMaker;
 	edgeMaker.Init(curve);	
@@ -30,7 +30,7 @@ void GeometryWriter::writeGeomEntityToStepFile(Handle_Geom_Curve curve, std::str
 	return;
 }
 
-void GeometryWriter::writeGeomEntityToStepFile(Handle_Geom_Surface surface, std::string fileName)
+void GeometryWriter::writeGeomEntityToStepFile(Handle(Geom_Surface) surface, std::string fileName)
 {
 	BRepBuilderAPI_MakeFace faceMaker;
 	faceMaker.Init(surface,true,1E-6);	
