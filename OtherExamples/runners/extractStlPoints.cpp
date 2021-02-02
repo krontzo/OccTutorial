@@ -6,7 +6,8 @@
 
 #include "StlAPI.hxx"
 #include "TColgp_HArray1OfPnt.hxx"
-
+#include <RWStl.hxx>
+#include <Poly_Triangulation.hxx>
 #include <iostream>
 
 int main(int argc, char *argv[])
@@ -25,12 +26,16 @@ int main(int argc, char *argv[])
 	std::cout << "Reading STL file " << inputFileName << " ..." << std::flush;
 
 	StlAPI::Read(stlShape,inputFileName);
-
+    Handle(Poly_Triangulation) triangulation = RWStl::ReadFile(inputFileName); 
 	std::cout << "done.";
+	std::cout << "Nb of nodes: " << triangulation->NbNodes();;
 
-	Handle_TColgp_HArray1OfPnt extractedPoints = StlPointsExtractor::extractVerticesFromTopoDSShape(stlShape);
+    TColgp_Array1OfPnt extractedStlPoints{triangulation->Nodes()};
+
+	Handle(TColgp_HArray1OfPnt) extractedPoints = StlPointsExtractor::extractVerticesFromTopoDSShape(stlShape);
 
 	WriteCoordinatesToFile::writeCoordinatesToFile("stlOutput.txt",extractedPoints->Array1());
+	WriteCoordinatesToFile::writeCoordinatesToFile("stlOutputRWStl.txt", extractedStlPoints);
 	
 	return 0;
 }
